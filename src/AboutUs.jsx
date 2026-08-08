@@ -3,45 +3,34 @@ import React from "react";
 function AboutUs() {
   return (
     <div className="about-page">
-      <div className="about-card">
-        <h1>About Paradise Nursery</h1>
+      <h1>About Paradise Nursery</h1>
 
-        <p>
-          Paradise Nursery is an online plant shop created for people
-          who love bringing nature into their homes and workplaces.
-        </p>
+      <p>
+        Paradise Nursery is an online plant shop dedicated to bringing
+        beautiful and healthy houseplants into your home.
+      </p>
 
-        <p>
-          We offer a variety of beautiful houseplants including
-          indoor plants, succulent plants, and flowering plants.
-        </p>
+      <p>
+        We offer a wide variety of indoor plants carefully selected for
+        different spaces and lifestyles. Whether you are a beginner or an
+        experienced plant lover, we have something for you.
+      </p>
 
-        <p>
-          Our goal is to make it simple for customers to discover,
-          select, and purchase plants that make their living spaces
-          healthier and more beautiful.
-        </p>
+      <p>
+        Our goal is to make buying plants simple, affordable, and enjoyable.
+        We believe that plants can make homes healthier, greener, and more
+        beautiful.
+      </p>
 
-        <div className="about-features">
-          <div>
-            <span>🌱</span>
-            <h3>Quality Plants</h3>
-            <p>Healthy and beautiful plants for your home.</p>
-          </div>
+      <h2>Why Choose Us?</h2>
 
-          <div>
-            <span>🚚</span>
-            <h3>Easy Shopping</h3>
-            <p>A simple and convenient online shopping experience.</p>
-          </div>
-
-          <div>
-            <span>💚</span>
-            <h3>Nature First</h3>
-            <p>Helping you create greener and happier spaces.</p>
-          </div>
-        </div>
-      </div>
+      <ul>
+        <li>Wide variety of indoor plants</li>
+        <li>Affordable prices</li>
+        <li>Healthy and carefully selected plants</li>
+        <li>Easy online shopping</li>
+        <li>Customer-friendly experience</li>
+      </ul>
     </div>
   );
 }
