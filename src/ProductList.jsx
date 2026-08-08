@@ -2,165 +2,163 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "./CartSlice";
 
-const plants = [
+const products = [
+  // AIR PURIFYING
   {
     id: 1,
     name: "Snake Plant",
+    category: "Air Purifying",
     price: 18,
-    category: "Indoor Plants",
     image:
-      "https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1593482892290-f54927ae2b5b?w=500",
   },
   {
     id: 2,
-    name: "Monstera",
-    price: 25,
-    category: "Indoor Plants",
+    name: "Peace Lily",
+    category: "Air Purifying",
+    price: 22,
     image:
-      "https://images.unsplash.com/photo-1614594575939-b7a6d5d6e3f2?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?w=500",
   },
   {
     id: 3,
-    name: "Peace Lily",
-    price: 22,
-    category: "Indoor Plants",
+    name: "Spider Plant",
+    category: "Air Purifying",
+    price: 15,
     image:
-      "https://images.unsplash.com/photo-1593691509543-c55fb32e5cee?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1572688484438-313a6e50c333?w=500",
   },
   {
     id: 4,
-    name: "Rubber Plant",
-    price: 28,
-    category: "Indoor Plants",
+    name: "ZZ Plant",
+    category: "Air Purifying",
+    price: 24,
     image:
-      "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1632207691140-7e96c1f0c0d6?w=500",
   },
   {
     id: 5,
-    name: "ZZ Plant",
+    name: "Boston Fern",
+    category: "Air Purifying",
     price: 20,
-    category: "Indoor Plants",
     image:
-      "https://images.unsplash.com/photo-1614594575939-b7a6d5d6e3f2?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1620803366004-119a95a4f6e4?w=500",
   },
   {
     id: 6,
-    name: "Spider Plant",
-    price: 16,
-    category: "Indoor Plants",
+    name: "Rubber Plant",
+    category: "Air Purifying",
+    price: 26,
     image:
-      "https://images.unsplash.com/photo-1572688484438-313a6e50c333?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1598880940080-ff9a29891b85?w=500",
   },
 
+  // SUCCULENTS
   {
     id: 7,
     name: "Aloe Vera",
-    price: 14,
     category: "Succulents",
+    price: 14,
     image:
-      "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=500",
   },
   {
     id: 8,
     name: "Echeveria",
-    price: 12,
     category: "Succulents",
+    price: 12,
     image:
-      "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?w=500",
   },
   {
     id: 9,
     name: "Jade Plant",
-    price: 19,
     category: "Succulents",
+    price: 16,
     image:
-      "https://images.unsplash.com/photo-1525490829609-d166ddb58678?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?w=500",
   },
   {
     id: 10,
     name: "Haworthia",
-    price: 15,
     category: "Succulents",
+    price: 13,
     image:
-      "https://images.unsplash.com/photo-1459411621453-7b03977f4bfc?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?w=500",
   },
   {
     id: 11,
-    name: "String of Pearls",
-    price: 24,
+    name: "Zebra Haworthia",
     category: "Succulents",
+    price: 17,
     image:
-      "https://images.unsplash.com/photo-1525490829609-d166ddb58678?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1485955900006-10f4d324d411?w=500",
   },
   {
     id: 12,
-    name: "Cactus",
-    price: 10,
+    name: "String of Pearls",
     category: "Succulents",
+    price: 19,
     image:
-      "https://images.unsplash.com/photo-1550258987-190a2d41a8ba?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=500",
   },
 
+  // TROPICAL
   {
     id: 13,
-    name: "Rose Plant",
-    price: 30,
-    category: "Flowering Plants",
+    name: "Monstera",
+    category: "Tropical",
+    price: 28,
     image:
-      "https://images.unsplash.com/photo-1496062031456-07b8f162a322?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1614594975525-e45190c55d0b?w=500",
   },
   {
     id: 14,
-    name: "Orchid",
-    price: 35,
-    category: "Flowering Plants",
+    name: "Bird of Paradise",
+    category: "Tropical",
+    price: 32,
     image:
-      "https://images.unsplash.com/photo-1566907225473-7b1b1f2e6c9c?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1614594895304-fe7116ac3b6f?w=500",
   },
   {
     id: 15,
-    name: "Anthurium",
-    price: 27,
-    category: "Flowering Plants",
+    name: "Philodendron",
+    category: "Tropical",
+    price: 25,
     image:
-      "https://images.unsplash.com/photo-1572041000551-1c3e8f9a1f45?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?w=500",
   },
   {
     id: 16,
-    name: "African Violet",
-    price: 21,
-    category: "Flowering Plants",
+    name: "Calathea",
+    category: "Tropical",
+    price: 27,
     image:
-      "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1604762524889-3e2fcc145683?w=500",
   },
   {
     id: 17,
-    name: "Begonia",
-    price: 23,
-    category: "Flowering Plants",
+    name: "Areca Palm",
+    category: "Tropical",
+    price: 30,
     image:
-      "https://images.unsplash.com/photo-1497250681960-ef046c08a56e?auto=format&fit=crop&w=600&q=80"
+      "https://images.unsplash.com/photo-1523438885200-e635ba2c371e?w=500",
   },
   {
     id: 18,
-    name: "Geranium",
-    price: 26,
-    category: "Flowering Plants",
+    name: "Fiddle Leaf Fig",
+    category: "Tropical",
+    price: 35,
     image:
-      "https://images.unsplash.com/photo-1496062031456-07b8f162a322?auto=format&fit=crop&w=600&q=80"
-  }
-];
-
-const categories = [
-  "Indoor Plants",
-  "Succulents",
-  "Flowering Plants"
+      "https://images.unsplash.com/photo-1509423350716-97f9360b4e09?w=500",
+  },
 ];
 
 function ProductList() {
   const dispatch = useDispatch();
-
   const cartItems = useSelector((state) => state.cart.items);
+
+  const categories = [...new Set(products.map((product) => product.category))];
 
   const isInCart = (id) => {
     return cartItems.some((item) => item.id === id);
@@ -168,67 +166,36 @@ function ProductList() {
 
   return (
     <div className="products-page">
-      <div className="products-header">
-        <h1>Our Plants</h1>
+      <h1>Our Plants</h1>
 
-        <p>
-          Discover beautiful plants for every corner of your home.
-        </p>
-      </div>
+      {categories.map((category) => (
+        <section className="category" key={category}>
+          <h2>{category} Plants</h2>
 
-      {categories.map((category) => {
-        const categoryPlants = plants.filter(
-          (plant) => plant.category === category
-        );
+          <div className="product-grid">
+            {products
+              .filter((product) => product.category === category)
+              .map((product) => (
+                <div className="product-card" key={product.id}>
+                  <img src={product.image} alt={product.name} />
 
-        return (
-          <section className="category-section" key={category}>
-            <h2>{category}</h2>
+                  <h3>{product.name}</h3>
 
-            <div className="product-grid">
-              {categoryPlants.map((plant) => (
-                <div className="product-card" key={plant.id}>
-                  <img
-                    src={plant.image}
-                    alt={plant.name}
-                  />
+                  <p className="price">${product.price}</p>
 
-                  <div className="product-info">
-                    <h3>{plant.name}</h3>
-
-                    <p className="product-description">
-                      Beautiful {plant.name.toLowerCase()} for
-                      your home.
-                    </p>
-
-                    <div className="product-bottom">
-                      <span className="price">
-                        ${plant.price}
-                      </span>
-
-                      <button
-                        className={
-                          isInCart(plant.id)
-                            ? "add-btn disabled"
-                            : "add-btn"
-                        }
-                        disabled={isInCart(plant.id)}
-                        onClick={() =>
-                          dispatch(addToCart(plant))
-                        }
-                      >
-                        {isInCart(plant.id)
-                          ? "Added"
-                          : "Add to Cart"}
-                      </button>
-                    </div>
-                  </div>
+                  <button
+                    onClick={() => dispatch(addToCart(product))}
+                    disabled={isInCart(product.id)}
+                  >
+                    {isInCart(product.id)
+                      ? "Added to Cart"
+                      : "Add to Cart"}
+                  </button>
                 </div>
               ))}
-            </div>
-          </section>
-        );
-      })}
+          </div>
+        </section>
+      ))}
     </div>
   );
 }
