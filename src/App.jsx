@@ -1,15 +1,100 @@
 import React from "react";
-import { Link, Routes, Route, useLocation } from "react-router-dom";
+import { Link, Routes, Route, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
+import AboutUs from "./AboutUs";
 import ProductList from "./ProductList";
 import CartItem from "./CartItem";
-import AboutUs from "./AboutUs";
+
+function Home() {
+  const navigate = useNavigate();
+
+  return (
+    <div className="home-page">
+      <div className="hero-content">
+        <h1>Paradise Nursery</h1>
+
+        <p>
+          Bring nature into your home with beautiful and healthy
+          houseplants.
+        </p>
+
+        <button onClick={() => navigate("/plants")}>
+          Get Started
+        </button>
+      </div>
+    </div>
+  );
+}
+
+function Cart() {
+  const cartItems = useSelector((state) => state.cart.items);
+  const navigate = useNavigate();
+
+  const totalItems = cartItems.reduce(
+    (total, item) => total + item.quantity,
+    0
+  );
+
+  const totalCost = cartItems.reduce(
+    (total, item) => total + item.price * item.quantity,
+    0
+  );
+
+  if (cartItems.length === 0) {
+    return (
+      <div className="cart-page empty-cart">
+        <h1>Shopping Cart</h1>
+        <p>Your cart is currently empty.</p>
+
+        <button onClick={() => navigate("/plants")}>
+          Continue Shopping
+        </button>
+      </div>
+    );
+  }
+
+  return (
+    <div className="cart-page">
+      <h1>Shopping Cart</h1>
+
+      <div className="cart-summary">
+        <h2>
+          Total Items: {totalItems}
+        </h2>
+
+        <h2>
+          Total Cost: ${totalCost.toFixed(2)}
+        </h2>
+      </div>
+
+      <div className="cart-list">
+        {cartItems.map((item) => (
+          <CartItem key={item.id} item={item} />
+        ))}
+      </div>
+
+      <div className="cart-actions">
+        <button
+          className="checkout-button"
+          onClick={() => alert("Coming Soon!")}
+        >
+          Checkout
+        </button>
+
+        <button
+          className="continue-button"
+          onClick={() => navigate("/plants")}
+        >
+          Continue Shopping
+        </button>
+      </div>
+    </div>
+  );
+}
 
 function Navbar() {
-  const cartItems = useSelector(
-    (state) => state.cart.items
-  );
+  const cartItems = useSelector((state) => state.cart.items);
 
   const cartCount = cartItems.reduce(
     (total, item) => total + item.quantity,
@@ -18,14 +103,14 @@ function Navbar() {
 
   return (
     <nav className="navbar">
-      <Link to="/" className="logo">
-        🌿 Paradise Nursery
-      </Link>
+      <div className="logo">
+        Paradise Nursery
+      </div>
 
       <div className="nav-links">
         <Link to="/">Home</Link>
-        <Link to="/plants">Plants</Link>
         <Link to="/about">About Us</Link>
+        <Link to="/plants">Plants</Link>
 
         <Link to="/cart" className="cart-link">
           🛒 Cart
@@ -38,70 +123,18 @@ function Navbar() {
   );
 }
 
-function Home() {
-  return (
-    <main className="hero">
-      <div className="hero-overlay">
-        <div className="hero-content">
-          <p className="hero-small">
-            WELCOME TO
-          </p>
-
-          <h1>Paradise Nursery</h1>
-
-          <p>
-            Bring the beauty of nature into your home
-            with our carefully selected collection of
-            beautiful houseplants.
-          </p>
-
-          <Link
-            to="/plants"
-            className="get-started-btn"
-          >
-            Get Started
-          </Link>
-        </div>
-      </div>
-    </main>
-  );
-}
-
 function App() {
-  const location = useLocation();
-
   return (
-    <div className="app">
+    <>
       <Navbar />
 
       <Routes>
         <Route path="/" element={<Home />} />
-
-        <Route
-          path="/plants"
-          element={<ProductList />}
-        />
-
-        <Route
-          path="/cart"
-          element={<CartItem />}
-        />
-
-        <Route
-          path="/about"
-          element={<AboutUs />}
-        />
+        <Route path="/about" element={<AboutUs />} />
+        <Route path="/plants" element={<ProductList />} />
+        <Route path="/cart" element={<Cart />} />
       </Routes>
-
-      {location.pathname !== "/" && (
-        <footer>
-          <p>
-            © 2025 Paradise Nursery. Grow something
-            beautiful.
-          </p>
-        </footer>
-      )}
-    </div>
+    </>
   );
 }
 
